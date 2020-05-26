@@ -19,8 +19,16 @@ class CreateProjetsTable extends Migration
             $table->string('denomination', 100);
             $table->string('description', 255);
             $table->double('montant_projet', 15, 8)->nullable();
-            $table->boolean('publié')->nullable()->default(false);
-            $table->double('note_eligibilité', 15, 8)->nullable();
+            $table->longText('besoin_reponse_projet')->nullable();
+            $table->string('ville_pays_projet')->nullable();
+            $table->longText('genese_idee_projet')->nullable();
+            $table->longText('identite_projet')->nullable();
+            $table->String('image_premier_plan')->nullable();
+            $table->json('autre_images')->nullable();
+            $table->String('liens_video_projet')->nullable();
+            $table->boolean('publie')->nullable()->default(false);
+            $table->longText('keyword')->nullable();
+            $table->double('note_eligibilite', 15, 8)->nullable();
             $table->foreign('categorie_projet_id')->references('id')->on('categorie_projets')->onDelete('cascade');
             $table->timestamps();
         });

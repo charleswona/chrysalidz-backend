@@ -34,7 +34,6 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
-
     });
 });
 
@@ -47,6 +46,13 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
     });
+});
+
+Route::group([
+    'prefix'=>'dashboard'
+], function () {
+    Route::post('publier-projet', 'ProjetController@publierProjet');
+    Route::get('liste-projet-publier', 'ProjetController@listeProjetPublier');
 });
 
 Route::group([
