@@ -6,15 +6,12 @@ use Illuminate\Http\Request;
 
 class uploadController extends Controller
 {
-    public function uploadFile( Request $request)
+    public function uploadFile(Request $request)
     {
-        if ($files = $request->file('file')) {
-            $destinationPath = 'public/file/'; // upload path
-            $profilefile = $files->getClientOriginalExtension();
-            $files->move($destinationPath, $profilefile);
-
-            return response()->json(array('message' => 'fichier enregistré', 'success' => true ));
+        if ($request->hasFile('fileUpload')) {
+            $files = $request->file('fileUpload');
+            $request->fileUpload->move('storage/', $files->getClientOriginalName());
+            return response()->json(array('message' => 'fichier enregistré', 'success' => true));
         }
-
     }
 }
